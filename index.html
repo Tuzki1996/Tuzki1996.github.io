@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>iot project</title>
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body>
+    <h1>ANTI THEFT DEVICE DATA COLLECTION</h1>
+    <div class="centerBox" align="center"  style="margin: 20px;"  >
+
+  		<div id="map" style="width:400px;height:400px;background:yellow"></div>
+		<script>
+			function myMap() {
+			  var mapCanvas = document.getElementById("map");
+			  var mapOptions = {
+			    center: new google.maps.LatLng(24.7947, 120.9932), 
+			    zoom: 16
+			  };
+			  var map = new google.maps.Map(mapCanvas, mapOptions);
+
+			}
+		</script>
+	</div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjenhhWB9GuVYJNm2mtWGpcGbZ2_lXtyE&callback=myMap"></script>
+
+    <div class="tab">
+  		<button class="tablinks" onclick="openCity(event, 'RankTab')">RANK</button>
+  		<button class="tablinks" onclick="openCity(event, 'MapTab')">MAP</button>
+ 	 	<button class="tablinks" onclick="openCity(event, 'DiagramTab')">DIAGRAM</button>
+	</div>
+
+    <div id="RankTab" class="tabcontent">
+  		<h1>Most Frequently Happened places</h1>
+    	<div class="rankbox">1. 台達館   8 cases</div>
+    	<div class="rankbox">2. 操場     3 cases</div>
+    	<div class="rankbox">3. 化學館    2 cases</div> 
+	</div>
+
+	<div class="tabcontent" style="width: 100%; height: 100%; position: absolute;">
+		
+  		
+		<script>
+			function myMap() {
+				var mapOptions = {
+				    center: new google.maps.LatLng(24.79, 120.99);
+				    zoom: 20,
+				    mapTypeId: google.maps.MapTypeId.HYBRID
+				}
+				var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+			}
+		</script>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjenhhWB9GuVYJNm2mtWGpcGbZ2_lXtyE&callback=myMap"></script>
+
+  		
+
+    	 
+	</div>
+
+	<div id="DiagramTab" class="tabcontent">
+  		<h1>Diagram</h1>
+    	
+	</div>
+    <script>
+    	function openCity(evt, cityName) {
+    	// Declare all variables
+    		var i, tabcontent, tablinks;
+
+	    	// Get all elements with class="tabcontent" and hide them
+	    	tabcontent = document.getElementsByClassName("tabcontent");
+	    	for (i = 0; i < tabcontent.length; i++) {
+	        	tabcontent[i].style.display = "none";
+	    	}
+
+	    	// Get all elements with class="tablinks" and remove the class "active"
+	    	tablinks = document.getElementsByClassName("tablinks");
+	    	for (i = 0; i < tablinks.length; i++) {
+	        	tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    	}
+
+	    	// Show the current tab, and add an "active" class to the button that opened the tab
+	    	document.getElementById(cityName).style.display = "block";
+	    	evt.currentTarget.className += " active";
+		}
+    </script>	
+   
+    
+    
+    <script>
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', "IoT_final_project_server/rest/hello/tracy", true);
+		xhr.send();
+
+		xhr.onreadystatechange = processRequest;
+ 
+		function processRequest(e) {
+
+			
+
+			if (xhr.readyState == 4 ) {
+				//var status=xhr.status;
+				//alert(xhr.responseText);
+
+				if(xhr.status==200){
+
+					alert(xhr.responseText);
+				}
+				
+
+				
+				
+        
+    		}
+ 
+		}
+  
+	</script>
+  </body>
+</html>

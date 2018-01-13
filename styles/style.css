@@ -1,0 +1,70 @@
+html, body, #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+h1 {
+  color: black;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  
+  
+}
+
+p {
+  text-align: center;
+  color: black;
+}
+
+.rankbox {
+
+    border-radius: 10px;
+    background: #AED6F1;
+    padding: 20px; 
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: : 25px;
+    width: 50%;
+    
+}
+.tab{
+	overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+
+}
+
