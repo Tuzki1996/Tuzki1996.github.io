@@ -5,85 +5,64 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
-    <h1>ANTI THEFT DEVICE DATA COLLECTION</h1>
-    <div class="centerBox" align="center"  style="margin: 20px;"  >
 
-  		<div id="map" style="width:400px;height:400px;background:yellow"></div>
-		<script>
-			function myMap() {
-			  var mapCanvas = document.getElementById("map");
-			  var mapOptions = {
-			    center: new google.maps.LatLng(24.7947, 120.9932), 
-			    zoom: 16
-			  };
-			  var map = new google.maps.Map(mapCanvas, mapOptions);
+    <h1>ANTI-THEFT DEVICE DATA COLLECTION</h1>
 
-			}
-		</script>
-	</div>
+    <div class="Tab">
+	  	<button class="tablink" onclick="openPage('RankTab',this)">RANK</button>
+	  	<button class="tablink" onclick="openPage('MapTab',this)">MAP</button>
+	 	<button class="tablink" onclick="openPage('DiagramTab',this)">DIAGRAM</button>
+    </div>
+	
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjenhhWB9GuVYJNm2mtWGpcGbZ2_lXtyE&callback=myMap"></script>
-
-    <div class="tab">
-  		<button class="tablinks" onclick="openCity(event, 'RankTab')">RANK</button>
-  		<button class="tablinks" onclick="openCity(event, 'MapTab')">MAP</button>
- 	 	<button class="tablinks" onclick="openCity(event, 'DiagramTab')">DIAGRAM</button>
-	</div>
-
-    <div id="RankTab" class="tabcontent">
-  		<h1>Most Frequently Happened places</h1>
+    <div id="RankTab" class="tabcontent" >
+  		<h1>Most Unsafe Locations</h1>
     	<div class="rankbox">1. 台達館   8 cases</div>
     	<div class="rankbox">2. 操場     3 cases</div>
     	<div class="rankbox">3. 化學館    2 cases</div> 
 	</div>
 
-	<div class="tabcontent" style="width: 100%; height: 100%; position: absolute;">
-		
-  		
-		<script>
+
+	 <div id="MapTab" class="tabcontent" style="height: 100%;width: 100%">
+	 	<h1>This Is Where They Steal Your Stuff !!!!</h1>
+	 	<div id="map" style="width:100%;height:80%;background:yellow"></div>	 	
+        <script>
 			function myMap() {
 				var mapOptions = {
-				    center: new google.maps.LatLng(24.79, 120.99);
-				    zoom: 20,
-				    mapTypeId: google.maps.MapTypeId.HYBRID
+			    	center: new google.maps.LatLng(24.7947, 120.9932),
+			    	zoom: 15,
+			    	mapTypeId: google.maps.MapTypeId.HYBRID
 				}
-				var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 			}
 		</script>
-
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjenhhWB9GuVYJNm2mtWGpcGbZ2_lXtyE&callback=myMap"></script>
-
-  		
-
-    	 
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARZiM9Uon3eoiIqZXLYNHyov-l5jrO73w&callback=myMap"></script>	
 	</div>
-
+   
 	<div id="DiagramTab" class="tabcontent">
   		<h1>Diagram</h1>
     	
 	</div>
+
     <script>
-    	function openCity(evt, cityName) {
-    	// Declare all variables
-    		var i, tabcontent, tablinks;
+    	 document.getElementById('RankTab').style.display = "block";
+		function openPage(pageName,elmnt) {
+		    var i, tabcontent, tablinks;
+		    tabcontent = document.getElementsByClassName("tabcontent");
+		    for (i = 0; i < tabcontent.length; i++) {
+		        tabcontent[i].style.display = "none";
+		    }
+		    tablinks = document.getElementsByClassName("tablink");
+		    for (i = 0; i < tablinks.length; i++) {
+		        tablinks[i].style.backgroundColor = "";
+		    }
+		    document.getElementById(pageName).style.display = "block";
+		    elmnt.style.backgroundColor = '#85929E';
 
-	    	// Get all elements with class="tabcontent" and hide them
-	    	tabcontent = document.getElementsByClassName("tabcontent");
-	    	for (i = 0; i < tabcontent.length; i++) {
-	        	tabcontent[i].style.display = "none";
-	    	}
-
-	    	// Get all elements with class="tablinks" and remove the class "active"
-	    	tablinks = document.getElementsByClassName("tablinks");
-	    	for (i = 0; i < tablinks.length; i++) {
-	        	tablinks[i].className = tablinks[i].className.replace(" active", "");
-	    	}
-
-	    	// Show the current tab, and add an "active" class to the button that opened the tab
-	    	document.getElementById(cityName).style.display = "block";
-	    	evt.currentTarget.className += " active";
 		}
-    </script>	
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+</script>
    
     
     
