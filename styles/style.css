@@ -41,8 +41,8 @@ p {
 .rankbox1{
      border-radius: 10px;
      background: #555 ;
-     height: 100px;
-     width: 100px;
+     height: 120px;
+     width: 120px;
      display: inline-block;
      text-align: center;
 
@@ -50,7 +50,7 @@ p {
 .rankbox2{
      border-radius: 10px;
      text-align: center;
-     height: 100px;
+     height: 120px;
      width: auto;
      display:inline-block;
      margin-left: 150px;
@@ -68,7 +68,7 @@ p {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 90%;
-    height: 100px;
+    height: 120px;
 
     
 }
