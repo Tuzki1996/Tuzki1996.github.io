@@ -21,7 +21,7 @@ h2{
 }
 .f1{
   color: white;
-  size: 1;
+  size: 7;
   margin:auto;
  
 
@@ -33,7 +33,7 @@ p {
 }
 .rankbox1{
      border-radius: 10px;
-     background: #154360   ;
+     background: #555 ;
      height: 100px;
      width: 100px;
      display: inline-block;
@@ -46,7 +46,7 @@ p {
      height: 100px;
      width: auto;
      display:inline-block;
-     margin-left: 100px;
+     margin-left: 150px;
      margin-right: auto;
      
 
@@ -55,12 +55,12 @@ p {
 .box {
 
     border-radius: 10px;
-    background: #7FB3D5 ;
+    background: #85929E ;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
     margin-bottom: 15px;
-    width: 80%;
+    width: 90%;
     height: 100px;
 
     

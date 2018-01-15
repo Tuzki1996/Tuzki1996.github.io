@@ -1,9 +1,60 @@
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>iot project</title>
     <link rel="stylesheet" href="styles/style.css">
-   
+    <script>
+    	var url="http://10.0.1.9:8081/IoT_final_project_server/rest/hello";
+    	var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+
+		    if (this.readyState == 4 && this.status == 200) {
+		    	//alert(xhttp.responseText);
+		       // Typical action to be performed when the document is ready:
+		       
+		    }
+		    else{
+		    	//alert(this.status);
+
+		    }
+		};
+		xhttp.open("GET", url, true);
+		xhttp.send();
+
+       
+  
+
+    	var myJson ='[{"gps_lat":24.793,"gps_long":120.9924,"time":"2018-01-14 21:35:08"},{"gps_lat":24.792,"gps_long":120.9914,"time":"2018-01-14 21:35:08"},{"gps_lat":24.794,"gps_long":120.9922,"time":"2018-01-14 20:35:08"},{"gps_lat":24.7835,"gps_long":120.9922,"time":"2018-01-14 11:32:08"},{"gps_lat":24.7931,"gps_long":120.9931,"time":"2018-01-14 10:35:08"}]';
+
+    	
+    	var latitude=[0]; //=[24.793,24.792,24.783,24.789];
+    	var longitute=[0]; //=[120.9924,120.9934,120.9921,120.9914];
+        var rate= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    	var obj=JSON.parse(myJson);
+
+        
+        for(var i=1; i<obj.length+1;i++){
+        	latitude.push(obj[i-1].gps_lat);
+        	longitute.push(obj[i-1].gps_long);
+
+        	obj[i-1].time=obj[i-1].time.slice(0,10)+"T"+obj[i-1].time.slice(11)+"Z";
+
+            var myDate = new Date(obj[i-1].time);
+
+            var hour = myDate.getHours();
+            if(hour>=8){
+            	hour=hour-8;
+            } 
+            else{
+            	hour=24+hour-8;
+            }
+            rate[hour]++;
+
+        }
+        //alert(rate[21]);
+
+    </script>
   </head>
   <body>
 
@@ -18,9 +69,12 @@
 
     <div id="RankTab" class="tabcontent" >
   		<h1>Most Unsafe Locations</h1>
-    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">1</font></div> <div class="rankbox2"><font class="f1" size="6">台達館   8 cases</font></div></div>
-    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">2</font></div> <div class="rankbox2"><font class="f1" size="6">操場     3 cases</font></div></div>
-    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">3</font></div> <div class="rankbox2"><font class="f1" size="6">化學館    2 cases</font></div></div> 
+    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">1</font></div> <div class="rankbox2"><font class="f1" size="6">台達館   </font></div></div>
+    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">2</font></div> <div class="rankbox2"><font class="f1" size="6">操場   
+    	</font></div></div>
+    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">3</font></div> <div class="rankbox2"><font class="f1" size="6">化學館   </font></div></div> 
+    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">4</font></div> <div class="rankbox2"><font class="f1" size="6">資電館</font></div></div> 
+    	<div class="box"> <div class="rankbox1"><font class="f1" size="7">5</font></div> <div class="rankbox2"><font class="f1" size="6">成功湖</font></div></div> 
 	</div>
     
    
@@ -33,27 +87,20 @@
 			function myMap() {
 				var mapOptions = {
 			    	center: {lat: 24.7947, lng: 120.9932},
-			    	zoom: 17,
+			    	zoom: 16,
 			    	mapTypeId: google.maps.MapTypeId.HYBRID
 				}
 				var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 				
-				var marker = new google.maps.Marker({
-          			position:  {lat: 24.793, lng: 120.9924},
+				
+        		for(var i=0;i<latitude.length;i++){
+        			var marker = new google.maps.Marker({
+          			position:  {lat: latitude[i], lng: longitute[i]},
           			map: map
         		});
-        		var marker = new google.maps.Marker({
-          			position:  {lat: 24.7935, lng: 120.9914},
-          			map: map
-        		});
-        		var marker = new google.maps.Marker({
-          			position:  {lat: 24.7952, lng: 120.9934},
-          			map: map
-        		});
-        		var marker = new google.maps.Marker({
-          			position:  {lat: 24.7931, lng: 120.9924},
-          			map: map
-        		});
+
+   
+        		}
 
 			}
 			
@@ -72,30 +119,30 @@
 		      function drawChart() {
 		        var data = google.visualization.arrayToDataTable([
 		          ['Time', 'rate' ],
-		          ['00',  0],
-		          ['01',  1],
-		          ['02',  0],
-		          ['03',  0],
-		          ['04',  0],
-		          ['05',  0],
-		          ['06',  0],
-		          ['07',  0],
-		          ['08',  0],
-		          ['09',  0],
-		          ['10',  0],
-		          ['11',  0],
-		          ['12',  1],
-		          ['13',  0],
-		          ['14',  0],
-		          ['15',  0],
-		          ['16',  0],
-		          ['17',  0],
-		          ['18',  0],
-		          ['19',  0],
-		          ['20',  0],
-		          ['21',  0],
-		          ['22',  0],
-		          ['23',  2]
+		          ['00',  rate[0]],
+		          ['01',  rate[1]],
+		          ['02',  rate[2]],
+		          ['03',  rate[3]],
+		          ['04',  rate[4]],
+		          ['05',  rate[5]],
+		          ['06',  rate[6]],
+		          ['07',  rate[7]],
+		          ['08',  rate[8]],
+		          ['09',  rate[9]],
+		          ['10',  rate[10]],
+		          ['11',  rate[11]],
+		          ['12',  rate[12]],
+		          ['13',  rate[13]],
+		          ['14',  rate[14]],
+		          ['15',  rate[15]],
+		          ['16',  rate[16]],
+		          ['17',  rate[17]],
+		          ['18',  rate[18]],
+		          ['19',  rate[19]],
+		          ['20',  rate[20]],
+		          ['21',  rate[21]],
+		          ['22',  rate[22]],
+		          ['23',  rate[23]]
 
 		        ]);
 
@@ -141,33 +188,7 @@
     
     
     <script>
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', "IoT_final_project_server/rest/hello/tracy", true);
-		xhr.send();
-
-		xhr.onreadystatechange = processRequest;
- 
-		function processRequest(e) {
-
-			
-
-			if (xhr.readyState == 4 ) {
-				//var status=xhr.status;
-				//alert(xhr.responseText);
-
-				if(xhr.status==200){
-
-					alert(xhr.responseText);
-				}
-				
-
-				
-				
-        
-    		}
- 
-		}
-  
+		v
 	</script>
   </body>
 </html>
